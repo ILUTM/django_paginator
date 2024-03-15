@@ -10,5 +10,4 @@ def url2(request):
     return HttpResponse("You are there and not here")
 
 
-def home(request):
-    return HttpResponse("Welcome to the homepage!")
+
