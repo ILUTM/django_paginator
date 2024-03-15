@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def url1(request, *args, **kwargs):
+def url1(request):
     return HttpResponse("You are here and not there")
 
 
