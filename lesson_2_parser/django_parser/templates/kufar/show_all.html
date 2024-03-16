@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> Yallo Hauheni </h1>
-<h2> I am mrom Fars </h2>
+<h1 align = 'center'> Yallo Hauheni </h1>
 
-{% if furniture %}
-    {{furniture}}
+{% if furniture_list %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">price</th>
+        <th scope="col">description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for furniture in furniture_list %}
+        <tr>
+          <th scope="row">1</th>
+          <td>{{ furniture.price }}</td>
+          <td><a href="{{furniture.link}}"> {{ furniture.description }}</a></td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
 {% else %}
-<h2>Sorry, no furniture</h2>
+    <h2>Sorry, no furniture</h2>
 {% endif %}
 
 {% endblock %}

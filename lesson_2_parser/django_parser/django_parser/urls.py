@@ -24,3 +24,5 @@ urlpatterns = [
     path('', kufar_views.show_all, name='home'),
 ]
 
+handler404 = 'kufar.views.page_not_found'
+
