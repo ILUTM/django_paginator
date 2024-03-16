@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Furniture
 
 
-def url1(request):
-    return HttpResponse("You are here and not there")
+def show_all(request):
+    furniture_list = Furniture.objects.all().order_by('-price')
+    return render(request, 'kufar/show_all.html')
 
-
-def url2(request):
-    return HttpResponse("You are there and not here")
 
 
 

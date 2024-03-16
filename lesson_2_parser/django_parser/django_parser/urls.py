@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from kufar import views as kufar_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('kufar/', include('kufar.urls')),
+    path('', kufar_views.show_all, name='home'),
 ]
 
