@@ -2,28 +2,21 @@
 
 {% block content %}
 <h1 align = 'center'> Yallo Hauheni </h1>
-
-{% if furniture_list %}
   <table class="table">
     <thead class="thead-dark">
-      <tr>
+      <tr align="center">
+        <th scope="col">id</th>
         <th scope="col">price</th>
         <th scope="col">description</th>
       </tr>
     </thead>
-    <tbody>
-      {% for furniture in furniture_list %}
+    <tbody align="center">
         <tr>
-          <td>{{ furniture.price }}</td>
-          <td><a href="{{furniture.link}}"> {{ furniture.description }}</a></td>
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.price }}</td>
+          <td><a href="{{item.link}}"> {{ item.description }}</a></td>
         </tr>
-      {% endfor %}
-
     </tbody>
   </table>
-{% else %}
-    <h2>Sorry, no furniture</h2>
-{% endif %}
-
 {% endblock %}
 
