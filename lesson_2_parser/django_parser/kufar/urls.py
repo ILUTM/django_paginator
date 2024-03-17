@@ -10,7 +10,7 @@ urlpatterns = [
     path('update_item/<int:item_id>', views.update_item, name='update_item'),
     path('delete_item/<int:item_id>', views.delete_item, name='delete_item'),
     path('login', views.login, name='login'),
-    path('logout', views.logout, name='logout'),
+    path('logout', views.show_all_admin, name='logout'),
     path('register', views.SignUp.as_view(), name='register'),
 ]
 

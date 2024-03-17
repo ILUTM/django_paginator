@@ -2,14 +2,12 @@
 
 {% block content %}
 
-<h1 align = 'center'> Welcome, Sir </h1>
+<h1 align="center">Вход</h1>
 
-<form action="{% url 'login' %}" method="post">
+<form method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit" class="btn btn-success">log IN</button>
+    <button type="submit" class="btn btn-success">Log in</button>
 </form>
-
-
 {% endblock %}
 

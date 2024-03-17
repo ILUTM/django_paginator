@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from . models import Furniture
 from . forms import UpdateItemForm
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 
 
@@ -22,8 +22,10 @@ def show_all_admin(request):
     return render(
         request,
         'kufar/show_all_admin.html',
-        {'form': form,
-            'furniture_list': furniture_list}
+        {
+            'form': form,
+            'furniture_list': furniture_list
+        }
     )
 
 
@@ -61,14 +63,14 @@ def page_not_found(request, *args, **kwargs):
 
 
 def login(request):
-    return render(request, 'registration/login.html')
+    return render(request, 'kufar/login.html')
 
 
 def logout(request):
-    return render(request, 'registration/logout.html')
+    return render(request, 'kufar/logout.html')
 
 
 class SignUp(CreateView):
-    form_class = UserCreationForm()
+    form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/register.html'

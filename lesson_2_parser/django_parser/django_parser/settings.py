@@ -30,6 +30,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost/',
     'http://127.0.0.1:8000'
 ]
+INTERNAL_IPS = ['127.0.0.1', '192.168']
+
 CSRF_COOKIE_SECURE = True
 
 
@@ -43,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'kufar.apps.KufarConfig'
+    'kufar.apps.KufarConfig',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
@@ -141,5 +144,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'items'
-LOGIN_URL = 'items'
+LOGIN_REDIRECT_URL = 'main'
+
+

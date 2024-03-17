@@ -18,7 +18,7 @@ class Furniture(models.Model):
 
     class Meta:
         verbose_name = "Mieblia"
-        verbose_name_plural = "Jeblia"
+        verbose_name_plural = "Meblia"
         ordering = ["parse_datetime","price"]
 
     def __str__(self):
