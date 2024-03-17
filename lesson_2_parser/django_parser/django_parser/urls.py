@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from kufar import views as kufar_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('kufar/', include('kufar.urls')),
-    path('', kufar_views.show_all, name='home'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 handler404 = 'kufar.views.page_not_found'
+handler500 = 'kufar.views.page_not_found'
 

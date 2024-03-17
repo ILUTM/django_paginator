@@ -4,15 +4,16 @@
     <h1 align = 'center'> <b>Admin mode</b></h1>
 
 {% if furniture_list %}
-  <table align = "center" class="table" style="width: 100%">
+  <table align = "center" class="table" >
     <thead align="center" class="thead-dark">
       <tr align = "center">
-        <th scope="col" style="width: 5%;">id</th>
-        <th scope="col" style="width: 10%;">datetime</th>
-        <th scope="col" style="width: 10%;">price</th>
-        <th scope="col" style="width: 5%;">link</th>
-        <th scope="col" style="width: 55%;">description</th>
-        <th scope="col" style="width: 15%;"></th>
+        <th scope="col" >id</th>
+        <th scope="col">datetime</th>
+        <th scope="col" >price</th>
+        <th scope="col" >link</th>
+        <th scope="col" >description</th>
+        <th scope="col" >form</th>
+        <th scope="col" >correction</th>
       </tr>
     </thead>
     <tbody align = "center" >
@@ -21,21 +22,28 @@
           <th scope="row">{{ furniture.id }}</th>
           <td>{{ furniture.parse_datetime }}</td>
           <td>
-              <input id="number" type="number" value="{{ furniture.price }}" />
+              {{ furniture.price }}
           </td>
           <td scope="col">
               <a href = "{{ furniture.link }}">origin link</a>
           </td>
           <td align = "center">
-              <div align = "center" class="col-md-4 mb-3">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" cols = "100" rows="3">{{ furniture.description }}
-                  </textarea>
-              </div>
+            {{ furniture.description }}
           </td>
           <td>
-            <button type="button" class="btn btn-success">|    save    |</button>
-            <button type="button" class="btn btn-danger">delete</button>
+              <form action="{% url 'update_item' furniture.id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">save</button>
+              </form>
           </td>
+          <td>
+              <form action="{% url 'delete_item' furniture.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">delete</button>
+              </form>
+          </td>
+
         </tr>
       {% endfor %}
 
