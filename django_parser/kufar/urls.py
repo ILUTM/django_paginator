@@ -1,0 +1,18 @@
+from django.urls import path
+from . import views
+from django.contrib.auth.views import LogoutView
+from django.views.generic import RedirectView
+
+urlpatterns = [
+    path('', views.main),
+    path('items_admin', views.show_all_admin, name='items_admin'),
+    path('items', views.show_all, name='main'),
+    path('items/<int:item_id>', views.show_item, name='item'),
+    path('update_item/<int:item_id>', views.update_item, name='update_item'),
+    path('delete_item/<int:item_id>', views.delete_item, name='delete_item'),
+    path('login', views.login, name='login'),
+    path('logout', LogoutView.as_view(next_page='items'), name='logout'),
+    path('register', views.SignUp.as_view(), name='register'),
+]
+
+

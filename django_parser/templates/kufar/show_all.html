@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center my-4">Yallo Hauheni</h1>
+
+  {% if furniture_list %}
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for furniture in furniture_page %}
+          <tr>
+            <td>{{ furniture.price }}</td>
+            <td>
+              <a href="{% url 'item' furniture.id %}">
+                {{ furniture.description }}
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-end">
+        {% if furniture_page.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+              « First
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ furniture_page.previous_page_number }}" aria-label="Previous">
+              Previous
+            </a>
+          </li>
+        {% endif %}
+
+        <li class="page-item disabled">
+          <span class="page-link">
+            Page {{ furniture_page.number }} of {{ furniture_page.paginator.num_pages }}.
+          </span>
+        </li>
+
+        {% if furniture_page.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ furniture_page.next_page_number }}" aria-label="Next">
+              Next
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ furniture_page.paginator.num_pages }}" aria-label="Last">
+              Last »
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% else %}
+    <div class="alert alert-warning" role="alert">
+      Sorry, no furniture available.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

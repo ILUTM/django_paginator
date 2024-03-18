@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center my-4">Yallo Hauheni</h1>
+
+  {% if furniture_list %}
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" >id</th>
+          <th scope="col">datetime</th>
+          <th scope="col" >price</th>
+          <th scope="col" >link</th>
+          <th scope="col" >description</th>
+          <th scope="col" >form</th>
+          <th scope="col" >correction</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for furniture in furniture_page %}
+            <tr>
+              <th scope="row">{{ furniture.id }}</th>
+              <td>{{ furniture.parse_datetime }}</td>
+              <td>
+                  {{ furniture.price }}
+              </td>
+              <td scope="col">
+                  <a href = "{{ furniture.link }}">origin link</a>
+              </td>
+              <td align = "center">
+                {{ furniture.description }}
+              </td>
+              <td>
+                  <form action="{% url 'update_item' furniture.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">save</button>
+                  </form>
+              </td>
+              <td>
+                  <form action="{% url 'delete_item' furniture.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">delete</button>
+                  </form>
+              </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-end">
+        {% if furniture_page.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+              « First
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ furniture_page.previous_page_number }}" aria-label="Previous">
+              Previous
+            </a>
+          </li>
+        {% endif %}
+
+        <li class="page-item disabled">
+          <span class="page-link">
+            Page {{ furniture_page.number }} of {{ furniture_page.paginator.num_pages }}.
+          </span>
+        </li>
+
+        {% if furniture_page.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ furniture_page.next_page_number }}" aria-label="Next">
+              Next
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ furniture_page.paginator.num_pages }}" aria-label="Last">
+              Last »
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% else %}
+    <div class="alert alert-warning" role="alert">
+      Sorry, no furniture available.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+
